@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agregar Película</title>
+  <link rel="stylesheet" href="/src/css/style.css">
+</head>
+<body class="form-body">
+  <section class="movie-form">
+    <% if(username) { %>
+      <h1> Estás como: <%= username %></h1>
+    <% } %>
+    <h2>Agregar Película</h2>
+
+    <% if (error) { %>
+      <div class="error-message">
+        <p><%= error %></p>
+      </div>
+    <% } %>
+
+    <form action="/agregar" method="POST">
+      <label>Título</label>  
+        <input type="text" name="Titulo" placeholder="Ej: El Señor de los Anillos" required autocomplete="off">
+      </label>
+    
+      <label>Sinopsis  
+        <textarea name="Sinopsis" rows="5" placeholder="Escribe aquí una sinopsis detallada..." required></textarea>
+      </label>
+    
+      <label>Actores  
+        <input type="text" name="Actores" placeholder="Ej: Elijah Wood, Ian McKellen, Viggo Mortensen" required autocomplete="off">
+      </label>
+
+      <label>Año de estreno  
+        <input type="number" name="Anio" placeholder="Ej: 2001" min="1888" max="2100" required autocomplete="off">
+      </label>
+
+      <label for="Categoria">Categorías (usa Ctrl/Cmd para varias):
+        <select name="Categoria" id="Categoria" multiple size="8" required>
+          <option value="Acción">Acción (Escenas dinámicas, peleas, persecuciones)</option>
+          <option value="Animación">Animación (Película animada por completo o en gran parte)</option>
+          <option value="Aventura">Aventura (Viajes o desafíos épicos, exploración)</option>
+          <option value="Bélico">Bélico (Ambientada en tiempos de guerra real o ficticia)</option>
+          <option value="Biografía">Biografía (Basada en la vida de una persona real)</option>
+          <option value="Ciencia Ficción">Ciencia Ficción (Tecnología, futuro, viajes espaciales, etc.)</option>
+          <option value="Comedia">Comedia (Tono humorístico o satírico)</option>
+          <option value="Crimen">Crimen (Delitos, mafias, investigaciones criminales)</option>
+          <option value="Deportes">Deportes (El deporte es el eje central de la historia)</option>
+          <option value="Distopía">Distopía (Futuro opresivo, sociedades autoritarias o colapsadas)</option>
+          <option value="Drama">Drama (Enfocada en emociones, conflictos humanos intensos)</option>
+          <option value="Educación">Educación (Temas escolares, aprendizaje, docentes)</option>
+          <option value="Experimental">Experimental (Narrativa poco convencional, visualmente única)</option>
+          <option value="Familiar">Familiar (Apta para todo público, valores positivos)</option>
+          <option value="Fantasía">Fantasía (Elementos mágicos, criaturas irreales, mundos imaginarios)</option>
+          <option value="Guerra">Guerra (Batallas, contexto militar intenso)</option>
+          <option value="Historia">Historia (Basada en eventos históricos reales)</option>
+          <option value="Histórico">Histórico (Ambientación en épocas pasadas con enfoque en detalles de época)</option>
+          <option value="LGBTQ+">LGBTQ+ (Identidad y relaciones LGBTQ+ como eje central)</option>
+          <option value="Misterio">Misterio (Resolución de enigmas o hechos confusos)</option>
+          <option value="Musical">Musical (Canciones originales interpretadas por los personajes)</option>
+          <option value="Música">Música (La música o los músicos son el tema central)</option>
+          <option value="Policial">Policial (Investigaciones policiales, detectives)</option>
+          <option value="Psicológico">Psicológico (Temas mentales, suspenso mental, giros profundos)</option>
+          <option value="Romance">Romance (Relaciones amorosas como eje principal)</option>
+          <option value="Superhéroes">Superhéroes (Personajes con poderes, inspirados en cómics)</option>
+          <option value="Terror">Terror (Buscar provocar miedo, tensión, horror)</option>
+          <option value="Thriller">Thriller (Suspenso intenso, ritmo veloz, tensión constante)</option>
+        </select>
+      </label>
+
+      <label>Nombre de imagen (sin extensión)
+        <input type="text" name="Imagen" placeholder="Ej: el_senor_anillos" required autocomplete="off">
+      </label>
+
+      <button type="submit" class="btn">Guardar Película</button>
+    </form>
+
+    <button type="button" class="back-link" id="back-button">Regresar</button>
+  </section>
+
+  <script src="/src/js/scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

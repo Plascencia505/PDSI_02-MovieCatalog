@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Error</title>
+    <link rel="stylesheet" href="/src/css/style.css">
+</head>
+<body class="form-body">
+    <section class="error-card">
+        <% if (error) { %>
+            <div class="error-message">
+                <h1><%= error %></h1>
+            </div>
+        <% } %>
+        <img src="/src/img/errorImage.png" class="error-image">
+        <button type="button" class="back-link" id="back-button">Regresar</button>
+    </section>
+    <script src="/src/js/scripts.js"></script>
+</body>
+</html>

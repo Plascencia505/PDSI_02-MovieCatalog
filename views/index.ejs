@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Películas</title>
+  <link rel="stylesheet" href="/src/css/style.css">
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo-container">
+      <a href="/">
+        <img src="/src/img/logo.png" alt="Logo" class="logo" />
+      </a>
+    </div>
+
+    <form id="buscador" class="search-bar" action="/buscar" method="GET">
+      <% if (user) { %>
+        <a href="/agregar" class="btn-add left-button" title="Agregar película">
+          <i class="fa-solid fa-plus"></i>
+        </a>
+      <% } %>
+      <input type="text" id="inputBusqueda" name="q" placeholder="Buscar en las películas" value="<%= searchQuery || '' %>" autocomplete="off" />
+      <button class="right-button" type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </form>
+
+    <div class="user-section">
+      <span class="username">
+        <%= user ? user.Username : "Invitado" %>
+      </span>
+      <% if (user) { %>
+        <a href="/logout" class="btn login">
+          <i class="fa-solid fa-right-from-bracket"></i>
+        </a>
+      <% } else { %>
+        <a href="/login" class="btn login">
+          <i class="fa-solid fa-right-to-bracket"></i>
+        </a>
+      <% } %>
+    </div>
+  </header>
+
+  <% if (searchQuery) { %>
+    <div class="search-result-banner">
+      <% if (movies.length > 0) { %>
+        <p>Se encontraron <strong><%= movies.length %></strong> resultados para "<span class="highlight-query"><%= searchQuery %></span>"</p>
+      <% } else { %>
+        <p>No se encontraron resultados para "<span class="highlight-query"><%= searchQuery %></span>"</p>
+      <% } %>
+    </div>
+  <% } %>
+
+  <main class="movies-container">
+    <% movies.forEach(movie => { %>
+      <div class="movie-menu">
+        <div class="movie">
+          <img src="<%= movie.Imagen %>" alt="<%= movie.Titulo %>">
+          <div class="movie-content">
+            <h2><%= movie.Titulo %></h2>
+            <p><b>Año:</b> <%= movie.Anio %></p>
+            <p><strong>Categoría:</strong> <%= movie.Categoria.join(', ') %></p>
+            <p><strong>Actores:</strong> <%= movie.Actores.join(', ') %></p>
+            <div class="sinopsis">
+              <p><strong>Sinopsis:</strong> <%= movie.Sinopsis %></p>
+            </div>
+          </div>
+        </div>
+        <% if (user && (user.Id_user === 1 || user.Id_user === movie.Id_creador)) { %>
+          <div class="ctrl-movies">
+            <a href="/editar/<%= movie._id %>" class="btn-movies btn-updt">
+              <i class="fa-solid fa-pencil"></i> Película
+            </a>
+
+            <form action="/eliminar" method="POST" class="delete-form">
+              <input type="hidden" name="Id" value="<%= movie._id %>">
+              <button type="submit" class="btn-movies btn-del">
+                <i class="fa-solid fa-trash"></i> Película
+              </button>
+            </form>
+          </div>
+        <% } %>
+      </div>
+    <% }) %>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-column logo-column">
+        <img src="/src/img/logo.png" alt="Muy Muy Animado" class="footer-logo">
+      </div>
+      <div class="footer-column">
+        <h3>Muy Muy Animado</h3>
+        <p>
+          Muy Muy Animado es una plataforma especializada en cine y animación, diseñada para quienes valoran la calidad narrativa, artística y técnica. Nuestro objetivo es ofrecer un espacio donde los usuarios puedan explorar, redescubrir y profundizar en las obras más representativas del cine y animación, tanto clásicas como contemporáneas.
+        </p>       
+      </div>
+      <div class="footer-column">
+        <h3>Síguenos</h3>
+        <ul class="social-links">
+          <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+          <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+          <li><a href="#"><i class="fab fa-tiktok"></i> Tik Tok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Muy Muy Animado. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  
+  <script src="src/js/scripts.js"></script>
+  <script src="https://kit.fontawesome.com/35a58614a1.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

@@ -268,7 +268,7 @@ module.exports = (Movie, User, userConnection) => {
             movie.Actores = actoresArray;
             movie.Anio = Anio;
             movie.Categoria = categoriasArray;
-            Imagen = Imagen.replace(/\.(jpg|jpeg|png|gif)$/i, '');
+            Imagen = Imagen.replace(/\.(jpg|jpeg|png|gif)$/i, '').replace(' ','_');
             movie.Imagen = `src/img/${Imagen}.jpg`;
     
             await movie.save();

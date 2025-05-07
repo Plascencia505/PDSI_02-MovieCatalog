@@ -23,15 +23,15 @@
       <input type="hidden" name="Id" value="<%= movie._id %>">
 
       <label>Título  
-        <input type="text" name="Titulo" value="<%= movie.Titulo %>" placeholder="Ej: El Señor de los Anillos" required autocomplete="off">
+        <input type="text" name="Titulo" value="<%- movie.Titulo %>" placeholder="Ej: El Señor de los Anillos" required autocomplete="off">
       </label>
       
       <label>Sinopsis  
-        <textarea name="Sinopsis" rows="5" placeholder="Escribe aquí una sinopsis detallada..." required><%= movie.Sinopsis %></textarea>
+        <textarea name="Sinopsis" rows="5" placeholder="Escribe aquí una sinopsis detallada..." required><%- movie.Sinopsis %></textarea>
       </label>
       
       <label>Actores  
-        <input type="text" name="Actores" value="<%= movie.Actores.join(', ') %>" placeholder="Ej: Elijah Wood, Ian McKellen, Viggo Mortensen" required autocomplete="off">
+        <input type="text" name="Actores" value="<%- movie.Actores.join(', ') %>" placeholder="Ej: Elijah Wood, Ian McKellen, Viggo Mortensen" required autocomplete="off">
       </label>
 
       <label>Año de estreno  

@@ -56,14 +56,14 @@
     <% movies.forEach(movie => { %>
       <div class="movie-menu">
         <div class="movie">
-          <img src="<%= movie.Imagen %>" alt="<%= movie.Titulo %>">
+          <img src="<%= movie.Imagen %>" alt="<%- movie.Titulo %>">
           <div class="movie-content">
-            <h2><%= movie.Titulo %></h2>
+            <h2><%- movie.Titulo %></h2>
             <p><b>Año:</b> <%= movie.Anio %></p>
             <p><strong>Categoría:</strong> <%= movie.Categoria.join(', ') %></p>
-            <p><strong>Actores:</strong> <%= movie.Actores.join(', ') %></p>
+            <p><strong>Actores:</strong> <%- movie.Actores.join(', ') %></p>
             <div class="sinopsis">
-              <p><strong>Sinopsis:</strong> <%= movie.Sinopsis %></p>
+              <p><strong>Sinopsis:</strong> <%- movie.Sinopsis %></p>
             </div>
           </div>
         </div>

@@ -192,17 +192,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     title: 'Imagen ya existe',
                     text: 'Se encontró una imagen con ese nombre. Puedes usarla si corresponde a la película.',
                     imageUrl: ruta,
-                    imageWidth: 250,
-                    imageHeight: 300,
+                    imageWidth: 180,
+                    imageHeight: 210,
                     imageAlt: 'Vista previa',
-                    confirmButtonText: 'Aceptar'
+                    confirmButtonText: 'Aceptar',
+                    draggable: true
                 });
             } else {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Imagen no disponible',
                     text: 'No existe una imagen con ese nombre. Asegúrate de subirla manualmente.',
-                    confirmButtonText: 'Entendido'
+                    confirmButtonText: 'Entendido',
+                    draggable: true
                 });
             }
         } catch (err) {

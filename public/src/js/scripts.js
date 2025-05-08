@@ -219,11 +219,13 @@ document.addEventListener("DOMContentLoaded", () => {
 const form = document.getElementById('buscador');
 const input = document.getElementById('inputBusqueda');
 
-form.addEventListener('submit', (e) => {
-  if (!input.value.trim()) {
-    e.preventDefault(); 
-  }
-});
+if(form){
+    form.addEventListener('submit', (e) => {
+        if (!input.value.trim()) {
+          e.preventDefault(); 
+        }
+      });
+}
 
 function sanitizarNombre(nombre) {
     return nombre

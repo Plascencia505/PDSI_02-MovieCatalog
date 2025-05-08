@@ -339,21 +339,20 @@ main {
 }
 .imagen-wrapper {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
 }
 .custom-file-label {
   background-color: #6a0dad;
   color: white;
   padding: 0.7rem 1rem;
-  border-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
   cursor: pointer;
-  font-size: 1rem;
   display: flex;
-  align-items: center;
-  height: 100%;
   transition: background-color 0.3s ease;
+  margin: 0.5rem 0 2rem 0;
+  font-size: 1rem;
 }
 .custom-file-label:hover {
   background-color: #5800a1;
@@ -363,6 +362,9 @@ main {
 }
 #nombreImagen {
   flex: 1;
+  margin: 0.5rem 0 2rem 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
 }
 
 /* Marcas de las busquedas*/

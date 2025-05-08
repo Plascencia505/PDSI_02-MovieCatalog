@@ -174,29 +174,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const inputFile = document.getElementById('imagenInput');
     const inputText = document.getElementById('nombreImagen');
-
+  
     if (!inputFile || !inputText) return;
-
+  
     inputFile.addEventListener('change', async () => {
         const file = inputFile.files[0];
         if (!file) return;
-
         const nombreLimpio = sanitizarNombre(file.name);
-        let nuevoNombre = await obtenerNombreDisponible(nombreLimpio);
-
-        inputText.value = nuevoNombre;
-
-        if (nuevoNombre !== nombreLimpio) {
+        inputText.value = nombreLimpio;
+        const ruta = `/src/img/${nombreLimpio}.jpg`;
+    
+        try {
+            const existe = await imagenExiste(ruta);
+            if (existe) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Imagen ya existe',
+                    text: 'Se encontró una imagen con ese nombre. Puedes usarla si corresponde a la película.',
+                    imageUrl: ruta,
+                    imageWidth: 250,
+                    imageHeight: 300,
+                    imageAlt: 'Vista previa',
+                    confirmButtonText: 'Aceptar'
+                });
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Imagen no disponible',
+                    text: 'No existe una imagen con ese nombre. Asegúrate de subirla manualmente.',
+                    confirmButtonText: 'Entendido'
+                });
+            }
+        } catch (err) {
             Swal.fire({
-                title: 'Nombre ya en uso',
-                text: `Ya existe una imagen con ese nombre. Se sugirió: ${nuevoNombre}`,
-                confirmButtonText: 'Aceptar'
-            });
-        } else {
-            Swal.fire({
-                icon: 'info',
-                title: 'Nombre disponible',
-                text: 'No existe una imagen con ese nombre, puedes usarlo.',
+                icon: 'error',
+                title: 'Error de conexión',
+                text: 'No se pudo verificar la imagen. Revisa tu conexión.',
                 confirmButtonText: 'Aceptar'
             });
         }
@@ -211,3 +224,23 @@ form.addEventListener('submit', (e) => {
     e.preventDefault(); 
   }
 });
+
+function sanitizarNombre(nombre) {
+    return nombre
+        .replace(/\.[^/.]+$/, '')                      // quitar extensión
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, '') // quitar tildes
+        .replace(/[<>:"\/\\|?*\x00-\x1F]/g, '')         // caracteres peligrosos
+        .replace(/\s+/g, '_')                           // espacios a _
+        .replace(/[^a-zA-Z0-9_]/g, '_')                 // limpiar símbolos
+        .toLowerCase()
+        .slice(0, 50);
+}
+  
+async function imagenExiste(url) {
+    try {
+        const res = await fetch(url, { method: 'HEAD' });
+        return res.ok;
+    } catch {
+        return false;
+    }
+}

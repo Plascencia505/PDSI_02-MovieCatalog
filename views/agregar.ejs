@@ -69,13 +69,15 @@
         </select>
       </label>
 
-      <label>Selecciona una imagen local (.jpg)
-        <input type="file" id="imagenInput" accept=".jpg" />
-      </label>      
-      <label>Nombre de imagen (sin extensión)
-        <input type="text" name="Imagen" id="nombreImagen" placeholder="Ej: el_senor_anillos" required readonly>
-      </label>      
-
+      <div class="imagen-wrapper">
+        <label for="imagenInput" class="custom-file-label">
+          <i class="fa-solid fa-image"></i>
+        </label>
+        <input type="file" id="imagenInput" accept=".jpg" class="custom-file-input" hidden>
+      
+        <input type="text" name="Imagen" id="nombreImagen" placeholder="Nombre de imagen (.jpg)" readonly required>
+      </div>
+      
       <button type="submit" class="btn">Guardar Película</button>
     </form>
 

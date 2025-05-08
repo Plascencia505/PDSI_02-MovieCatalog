@@ -78,12 +78,19 @@
         </select>
       </label>
 
-      <label>Selecciona una imagen local (.jpg)
-        <input type="file" id="imagenInput" accept=".jpg" />
-      </label>      
-      <label>Nombre de imagen (sin extensión)
-        <input type="text" name="Imagen" id="nombreImagen" value="<%= movie.Imagen.replace('src/img/', '').replace('.jpg','') %>" required readonly>
-      </label>
+      <div class="imagen-wrapper">
+        <label for="imagenInput" class="custom-file-label">
+          <i class="fa-solid fa-image"></i>
+        </label>
+        <input type="file" id="imagenInput" accept=".jpg" class="custom-file-input" hidden>
+      
+        <input type="text" name="Imagen" id="nombreImagen" placeholder="Nombre de imagen (.jpg)" readonly required
+          <% if (movie && movie.Imagen) { %>
+            value="<%= movie.Imagen.replace('src/img/', '').replace('.jpg','') %>"
+          <% } %>
+        >
+      </div>
+      
 
       <button type="submit" class="btn">Actualizar Película</button>
     </form>
@@ -92,5 +99,6 @@
   </section>
 
   <script src="/src/js/scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

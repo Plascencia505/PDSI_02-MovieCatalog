@@ -188,23 +188,22 @@ document.addEventListener("DOMContentLoaded", () => {
             const existe = await imagenExiste(ruta);
             if (existe) {
                 Swal.fire({
-                    icon: 'info',
                     title: 'Imagen ya existe',
                     text: 'Se encontró una imagen con ese nombre. Puedes usarla si corresponde a la película.',
                     imageUrl: ruta,
-                    imageWidth: 180,
-                    imageHeight: 210,
+                    imageWidth: 250,
+                    imageHeight: 300,
                     imageAlt: 'Vista previa',
-                    confirmButtonText: 'Aceptar',
-                    draggable: true
+                    timer: 5500,
+                    showConfirmButton: false,
                 });
             } else {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Imagen no disponible',
                     text: 'No existe una imagen con ese nombre. Asegúrate de subirla manualmente.',
-                    confirmButtonText: 'Entendido',
-                    draggable: true
+                    timer: 3000,
+                    showConfirmButton: false,
                 });
             }
         } catch (err) {

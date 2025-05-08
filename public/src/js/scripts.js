@@ -182,3 +182,49 @@ form.addEventListener('submit', (e) => {
   }
 });
 
+document.getElementById('imagenInput')?.addEventListener('change', function (e) {
+    const file = e.target.files[0];
+    const inputNombre = document.getElementById('nombreImagen');
+  
+    if (!file) return;
+  
+    let nombreLimpio = file.name
+      .replace(/\.[^/.]+$/, '') // quitar extensión
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, '') // quitar acentos
+      .replace(/[<>:"\/\\|?*\x00-\x1F]/g, '') // caracteres peligrosos
+      .replace(/\s+/g, '_') // espacios a guión bajo
+      .replace(/[^a-zA-Z0-9_]/g, '_') // otros símbolos a _
+      .toLowerCase()
+      .slice(0, 50);
+  
+    inputNombre.value = nombreLimpio;
+  
+    const ruta = `/src/img/${nombreLimpio}.jpg`;
+  
+    fetch(ruta, { method: 'HEAD' }).then(res => {
+        if (res.ok) {
+            Swal.fire({
+            title: 'Imagen ya existe',
+            text: 'Se encontró una imagen en /src/img/ con ese nombre.',
+            imageUrl: ruta,
+            imageAlt: 'Previsualización de la imagen',
+            confirmButtonText: 'Aceptar'
+            });
+        } else {
+            Swal.fire({
+            icon: 'info',
+            title: 'Imagen no encontrada',
+            text: 'No hay una imagen existente con ese nombre en el servidor.',
+            confirmButtonText: 'Aceptar'
+            });
+        }
+    }).catch(() => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error de conexión',
+            text: 'No se pudo verificar la imagen.',
+            confirmButtonText: 'Aceptar'
+        });
+    });
+});
+

@@ -69,9 +69,12 @@
         </select>
       </label>
 
+      <label>Selecciona una imagen local (.jpg)
+        <input type="file" id="imagenInput" accept=".jpg" />
+      </label>      
       <label>Nombre de imagen (sin extensión)
-        <input type="text" name="Imagen" placeholder="Ej: el_senor_anillos" required autocomplete="off">
-      </label>
+        <input type="text" name="Imagen" id="nombreImagen" placeholder="Ej: el_senor_anillos" required readonly>
+      </label>      
 
       <button type="submit" class="btn">Guardar Película</button>
     </form>

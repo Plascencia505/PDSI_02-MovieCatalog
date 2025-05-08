@@ -134,8 +134,16 @@ module.exports = (Movie, User, userConnection) => {
         let actoresArray = Actores.split(',').map(actor => he.escape(actor.trim())).filter(Boolean);
         let categoriasArray = Array.isArray(Categoria) ? Categoria.map(cat => he.escape(cat.trim())) : [he.escape(Categoria.trim())];
         
+        Imagen = Imagen
+            .replace(/\.(jpg|jpeg|png|gif)$/i, '')
+            .normalize("NFD").replace(/[\u0300-\u036f]/g, '')
+            .replace(/[<>:"\/\\|?*\x00-\x1F]/g, '')
+            .replace(/\s+/g, '_')
+            .replace(/[^a-zA-Z0-9_]/g, '_')
+            .toLowerCase()
+            .slice(0, 50);
+
         try {
-            Imagen = Imagen.replace(/\.(jpg|jpeg|png|gif)$/i, '');
             const nuevaPelicula = new Movie({
                 Titulo,
                 Sinopsis,
@@ -243,6 +251,14 @@ module.exports = (Movie, User, userConnection) => {
 
         let actoresArray = Actores.split(',').map(actor => he.escape(actor.trim())).filter(Boolean);
         let categoriasArray = Array.isArray(Categoria) ? Categoria.map(cat => he.escape(cat.trim())) : [he.escape(Categoria.trim())];
+        Imagen = Imagen
+            .replace(/\.(jpg|jpeg|png|gif)$/i, '')
+            .normalize("NFD").replace(/[\u0300-\u036f]/g, '')
+            .replace(/[<>:"\/\\|?*\x00-\x1F]/g, '')
+            .replace(/\s+/g, '_')
+            .replace(/[^a-zA-Z0-9_]/g, '_')
+            .toLowerCase()
+            .slice(0, 50);
 
         try {
             const movie = await Movie.findById(Id);
@@ -268,7 +284,6 @@ module.exports = (Movie, User, userConnection) => {
             movie.Actores = actoresArray;
             movie.Anio = Anio;
             movie.Categoria = categoriasArray;
-            Imagen = Imagen.replace(/\.(jpg|jpeg|png|gif)$/i, '').replace(' ','_');
             movie.Imagen = `src/img/${Imagen}.jpg`;
     
             await movie.save();

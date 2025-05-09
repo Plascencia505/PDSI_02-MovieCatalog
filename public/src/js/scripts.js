@@ -193,17 +193,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     imageUrl: ruta,
                     imageWidth: 250,
                     imageHeight: 300,
-                    imageAlt: 'Vista previa',
-                    timer: 5500,
-                    showConfirmButton: false,
+                    imageAlt: 'Vista previa'
                 });
             } else {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Imagen no disponible',
                     text: 'No existe una imagen con ese nombre. Asegúrate de subirla manualmente.',
-                    timer: 3000,
-                    showConfirmButton: false,
+                    footer: '<a href="/cargar" target="_blank">Ir a menú de cargar imagenes</a>'
                 });
             }
         } catch (err) {

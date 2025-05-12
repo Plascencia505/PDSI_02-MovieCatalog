@@ -141,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const textoResaltar = termino.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const regex = new RegExp(`(${textoResaltar})`, 'gi');
+        
         const contenedores = document.querySelectorAll('.movie-content');
 
         contenedores.forEach(contenedor => {
@@ -171,7 +172,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
-
+    
+    // Seleccionar imagenes
     const inputFile = document.getElementById('imagenInput');
     const inputText = document.getElementById('nombreImagen');
   

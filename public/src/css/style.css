@@ -10,8 +10,14 @@ body {
   margin: 0;
   padding: 0;
 }
+.index-body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 main {
   margin-top: 7rem;
+  flex: 1;
 }
   
 /* Cabecera */

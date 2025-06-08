@@ -27,10 +27,5 @@
     "express-validator": "^7.2.1",
     "he": "^1.2.0",
     "mongoose": "^8.15.1"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.4",
-    "tailwindcss": "^4.1.8"
   }
 }

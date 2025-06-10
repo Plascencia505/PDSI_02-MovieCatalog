@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./src/css/input.css -o ./public/css/style.css --watch"
   },
   "repository": {
     "type": "git",
@@ -27,5 +28,11 @@
     "express-validator": "^7.2.1",
     "he": "^1.2.0",
     "mongoose": "^8.15.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.4",
+    "tailwindcss": "^4.1.8",
+    "tailwindcss-cli": "^0.1.2"
   }
 }

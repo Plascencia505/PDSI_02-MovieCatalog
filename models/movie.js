@@ -10,7 +10,7 @@ const movieSchema = new mongoose.Schema({
         required: true,
     },
     Anio:{
-        type: Number,
+        type: String,
         required: true,
     },
     Categoria: {

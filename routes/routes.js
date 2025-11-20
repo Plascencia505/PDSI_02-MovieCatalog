@@ -349,12 +349,9 @@ module.exports = (Movie, User, userConnection) => {
                 { Titulo: regex },
                 { Actores: { $regex: regex } },
                 { Categoria: { $regex: regex } },
-                { Sinopsis: regex }
+                { Sinopsis: regex },
+                { Anio: regex}
             ];
-
-            if (!isNaN(query)) {
-                condiciones.push({ Anio: Number(query) });
-            }
             
             const resultados = await Movie.find({ $or: condiciones });
     

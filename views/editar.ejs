@@ -50,8 +50,7 @@
 
               <label for="Categoria">Categorías (usa Ctrl/Cmd para varias):
                 <select name="Categoria" id="Categoria" multiple size="8" required>
-                  <% const categoriasDisponibles= [
-                    ["Acción", "Escenas dinámicas, peleas, persecuciones" ],
+                  <% const categoriasDisponibles=[ ["Acción", "Escenas dinámicas, peleas, persecuciones" ],
                     ["Animación", "Película animada por completo o en gran parte" ],
                     ["Aventura", "Viajes o desafíos épicos, exploración" ],
                     ["Bélico", "Ambientada en tiempos de guerra real o ficticia" ],
@@ -78,8 +77,7 @@
                     ["Romance", "Relaciones amorosas como eje principal" ],
                     ["Superhéroes", "Personajes con poderes, inspirados en cómics" ],
                     ["Terror", "Buscar provocar miedo, tensión, horror" ],
-                    ["Thriller", "Suspenso intenso, ritmo veloz, tensión constante" ] 
-                    ]; %>
+                    ["Thriller", "Suspenso intenso, ritmo veloz, tensión constante" ] ]; %>
                     <% categoriasDisponibles.forEach(([cat, guia])=> { %>
                       <option value="<%= cat %>" <%=movie.Categoria.includes(cat) ? "selected" : "" %>>
                         <%= cat %> (<%= guia %>)
@@ -89,8 +87,12 @@
               </label>
 
               <label>Nombre de imagen (sin extensión)
-                <input type="text" name="Imagen" value="<%= movie.Imagen.replace('src/img/', '').replace('.jpg','') %>"
-                  placeholder="Ej: el_senor_anillos" required autocomplete="off">
+                <div class="imagen-control">
+                  <input type="text" name="Imagen" id="nombreImagenInput" value="<%= movie.Imagen.replace('src/img/', '').replace('.jpg','') %>" placeholder="Ej: lego_batman" required autocomplete="off">
+                  <button type="button" id="btn-preview" class="right-button" title="Previsualizar imagen">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+                </div>
               </label>
 
               <div class="image-preview-container">

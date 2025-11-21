@@ -171,49 +171,49 @@ document.addEventListener("DOMContentLoaded", () => {
                 node.parentNode.replaceChild(span, node);
             });
         });
-    }
-    
-    // Seleccionar imagenes
-    const inputFile = document.getElementById('imagenInput');
-    const inputText = document.getElementById('nombreImagen');
-  
-    if (!inputFile || !inputText) return;
-  
-    inputFile.addEventListener('change', async () => {
-        const file = inputFile.files[0];
-        if (!file) return;
-        const nombreLimpio = sanitizarNombre(file.name);
-        inputText.value = nombreLimpio;
-        const ruta = `/src/img/${nombreLimpio}.jpg`;
-    
-        try {
-            const existe = await imagenExiste(ruta);
-            if (existe) {
-                Swal.fire({
-                    title: 'Imagen ya existe',
-                    text: 'Se encontró una imagen con ese nombre. Puedes usarla si corresponde a la película.',
-                    imageUrl: ruta,
-                    imageWidth: 250,
-                    imageHeight: 300,
-                    imageAlt: 'Vista previa'
-                });
-            } else {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Imagen no disponible',
-                    text: 'No existe una imagen con ese nombre. Asegúrate de subirla manualmente.',
-                    footer: '<a href="/cargar" target="_blank">Ir a menú de cargar imagenes</a>'
-                });
+    }    
+    const inputImagenPreview = document.getElementById('nombreImagenInput'); 
+    // Usaremos un selector más seguro y buscaremos el elemento en el DOM nuevamente
+    const btnPreview = document.getElementById('btn-preview'); 
+    const imgPreview = document.querySelector('.movie-cover-preview');
+    const containerPreview = document.querySelector('.image-preview-container');
+
+    if (inputImagenPreview && btnPreview && imgPreview && containerPreview) {
+        
+        // Constantes de ruta y extensión
+        const RUTA_BASE = '/src/img/';
+        const EXTENSION = '.jpg'; 
+        const IMAGEN_ERROR = '/src/img/error/not_found.jpg'; 
+        const actualizarPreview = (e) => {
+            if (e) {
+                e.preventDefault();
             }
-        } catch (err) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error de conexión',
-                text: 'No se pudo verificar la imagen. Revisa tu conexión.',
-                confirmButtonText: 'Aceptar'
-            });
-        }
-    });
+
+            const nombreImagen = inputImagenPreview.value.trim();
+
+            if (nombreImagen) {
+                const nuevaRuta = RUTA_BASE + nombreImagen + EXTENSION;
+                
+                imgPreview.src = nuevaRuta;
+
+                imgPreview.onerror = () => {
+                    imgPreview.src = IMAGEN_ERROR;
+                    imgPreview.alt = `Error al cargar: ${nombreImagen}`;
+                };
+                imgPreview.onload = () => {
+                    imgPreview.alt = `Imagen de la película: ${nombreImagen}`;
+                };
+
+                containerPreview.style.display = 'flex';
+            } else {
+                imgPreview.src = '';
+                containerPreview.style.display = 'none';
+                console.log("Campo de imagen vacío.");
+            }
+        };
+        btnPreview.addEventListener('click', actualizarPreview);
+        actualizarPreview(null);
+    } 
 });
 
 const form = document.getElementById('buscador');

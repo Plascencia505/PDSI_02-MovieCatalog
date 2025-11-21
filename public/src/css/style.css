@@ -430,6 +430,40 @@ h2 {
   transform: scale(1.03);
 }
 
+.imagen-control {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0.3rem 2rem 0.3rem;
+}
+
+.imagen-control input[type="text"] {
+  flex: 1; 
+  margin: 0;
+  padding: 0.5rem 1rem;
+  background-color: #222;
+  color: white;
+  font-size: 1rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.4rem;
+  border-bottom-left-radius: 0.4rem;
+}
+
+#btn-preview {
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  background-color: #6a0dad;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: auto;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
+}
+
 .custom-file-label {
   background-color: #6a0dad;
   color: white;

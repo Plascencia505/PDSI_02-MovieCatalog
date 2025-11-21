@@ -65,9 +65,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
   secret: 'Tangamandapio',
-  resave: false, 
+  resave: false,
   saveUninitialized: false,
-  cookie: { maxAge : 1000 * 60 * 120 } // 2 hora
+  cookie: { maxAge: 1000 * 60 * 120 } // 2 hora
 }));
 
 // El usuario en todas las vistas

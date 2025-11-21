@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Películas</title>
   <link rel="stylesheet" href="/src/css/style.css">
+  <link rel='shortcut icon' href="/src/img/favicon/movie.png" type='image/x-icon' />
 </head>
+
 <body class="index-body">
   <header class="main-header">
     <div class="logo-container">
@@ -19,11 +22,12 @@
         <a href="/agregar" class="btn-add left-button" title="Agregar película">
           <i class="fa-solid fa-plus"></i>
         </a>
-      <% } %>
-      <input type="text" id="inputBusqueda" name="q" placeholder="Buscar en las películas" value="<%= searchQuery || '' %>" autocomplete="off" />
-      <button class="right-button" type="submit">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
+        <% } %>
+          <input type="text" id="inputBusqueda" name="q" placeholder="Buscar en las películas"
+            value="<%= searchQuery || '' %>" autocomplete="off" />
+          <button class="right-button" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
     </form>
 
     <div class="user-section">
@@ -34,34 +38,43 @@
         <a href="/logout" class="btn login">
           <i class="fa-solid fa-right-from-bracket"></i>
         </a>
-      <% } else { %>
-        <a href="/login" class="btn login">
-          <i class="fa-solid fa-right-to-bracket"></i>
-        </a>
-      <% } %>
+        <% } else { %>
+          <a href="/login" class="btn login">
+            <i class="fa-solid fa-right-to-bracket"></i>
+          </a>
+          <% } %>
     </div>
   </header>
 
   <% if (searchQuery) { %>
     <div class="search-result-banner">
-      <% if (movies.length > 0) { %>
-        <p>Se encontraron <strong><%= movies.length %></strong> resultados para "<span class="highlight-query"><%= searchQuery %></span>"</p>
-      <% } else { %>
-        <p>No se encontraron resultados para "<span class="highlight-query"><%= searchQuery %></span>"</p>
-      <% } %>
+      <% if (movies.length> 0) { %>
+        <p>Se encontraron <strong>
+            <%= movies.length %>
+          </strong> resultados para "<span class="highlight-query">
+            <%= searchQuery %>
+          </span>"</p>
+        <% } else { %>
+          <p>No se encontraron resultados para "<span class="highlight-query">
+              <%= searchQuery %>
+            </span>"</p>
+          <% } %>
     </div>
-  <% } %>
+    <% } %>
 
-  <main class="movies-container">
-    <% movies.forEach(movie => { %>
-      <div class="movie-menu">
-        <div class="movie">
-          <img src="<%= movie.Imagen %>" alt="<%- movie.Titulo %>">
-          <div class="movie-content">
-            <h2><%- movie.Titulo %></h2>
-            <p><b>Año:</b> <%= movie.Anio %></p>
-            <p><strong>Categoría:</strong> <%= movie.Categoria.join(', ') %></p>
-            <p><strong>Actores:</strong> <%- movie.Actores.join(', ') %></p>
+      <main class="movies-container">
+        <% movies.forEach(movie=> { %>
+          <div class="movie-menu">
+            <div class="movie">
+              <img src="<%= movie.Imagen %>" alt="<%- movie.Titulo %>">
+              <div class="movie-content">
+                <h2><%- movie.Titulo %></h2>
+                <p><b>Año:</b>
+                  <%= movie.Anio %>
+                </p>
+                <p><strong>Categoría:</strong>
+                  <%= movie.Categoria.join(', ') %></p>
+            <p><strong>Actores:</strong> <%- movie.Actores.join(' , ') %></p>
             <div class="sinopsis">
               <p><strong>Sinopsis:</strong> <%- movie.Sinopsis %></p>
             </div>

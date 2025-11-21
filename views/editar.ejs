@@ -1,95 +1,109 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Editar Película</title>
   <link rel="stylesheet" href="/src/css/style.css">
+  <link rel='shortcut icon' href="/src/img/favicon/movie.png" type='image/x-icon' />
 </head>
+
 <body class="form-body">
   <section class="movie-form">
     <% if(username) { %>
-      <h1> Estás como: <%= username %></h1>
-    <% } %>
-    <h2>Editar Película</h2>
+      <h1> Estás como: <%= username %>
+      </h1>
+      <% } %>
+        <h2>Editar Película</h2>
 
-    <% if (error) { %>
-      <div class="error-message">
-        <p><%= error %></p>
-      </div>
-    <% } %>
+        <% if (error) { %>
+          <div class="error-message">
+            <p>
+              <%= error %>
+            </p>
+          </div>
+          <% } %>
 
-    <form action="/editar" method="POST">
-      <input type="hidden" name="Id" value="<%= movie._id %>">
+            <form action="/editar" method="POST">
+              <input type="hidden" name="Id" value="<%= movie._id %>">
 
-      <label>Título  
-        <input type="text" name="Titulo" value="<%- movie.Titulo %>" placeholder="Ej: El Señor de los Anillos" required autocomplete="off">
-      </label>
-      
-      <label>Sinopsis  
-        <textarea name="Sinopsis" rows="5" placeholder="Escribe aquí una sinopsis detallada..." required><%- movie.Sinopsis %></textarea>
-      </label>
-      
-      <label>Actores  
-        <input type="text" name="Actores" value="<%- movie.Actores.join(', ') %>" placeholder="Ej: Elijah Wood, Ian McKellen, Viggo Mortensen" required autocomplete="off">
-      </label>
+              <label>Título
+                <input type="text" name="Titulo" value="<%- movie.Titulo %>" placeholder="Ej: El Señor de los Anillos"
+                  required autocomplete="off">
+              </label>
 
-      <label>Año de estreno  
-        <input type="number" name="Anio" value="<%= movie.Anio %>" placeholder="Ej: 2001" min="1888" max="2100" required autocomplete="off">
-      </label>
+              <label>Sinopsis
+                <textarea name="Sinopsis" rows="5" placeholder="Escribe aquí una sinopsis detallada..."
+                  required><%- movie.Sinopsis %></textarea>
+              </label>
 
-      <label for="Categoria">Categorías (usa Ctrl/Cmd para varias):
-        <select name="Categoria" id="Categoria" multiple size="8" required>
-          <% const categoriasDisponibles = [
-            ["Acción", "Escenas dinámicas, peleas, persecuciones"],
-            ["Animación", "Película animada por completo o en gran parte"],
-            ["Aventura", "Viajes o desafíos épicos, exploración"],
-            ["Bélico", "Ambientada en tiempos de guerra real o ficticia"],
-            ["Biografía", "Basada en la vida de una persona real"],
-            ["Ciencia Ficción", "Tecnología, futuro, viajes espaciales, etc."],
-            ["Comedia", "Tono humorístico o satírico"],
-            ["Crimen", "Delitos, mafias, investigaciones criminales"],
-            ["Deportes", "El deporte es el eje central de la historia"],
-            ["Distopía", "Futuro opresivo, sociedades autoritarias o colapsadas"],
-            ["Drama", "Enfocada en emociones, conflictos humanos intensos"],
-            ["Educación", "Temas escolares, aprendizaje, docentes"],
-            ["Experimental", "Narrativa poco convencional, visualmente única"],
-            ["Familiar", "Apta para todo público, valores positivos"],
-            ["Fantasía", "Elementos mágicos, criaturas irreales, mundos imaginarios"],
-            ["Guerra", "Batallas, contexto militar intenso"],
-            ["Historia", "Basada en eventos históricos reales"],
-            ["Histórico", "Ambientación en épocas pasadas con enfoque en detalles de época"],
-            ["LGBTQ+", "Identidad y relaciones LGBTQ+ como eje central"],
-            ["Misterio", "Resolución de enigmas o hechos confusos"],
-            ["Musical", "Canciones originales interpretadas por los personajes"],
-            ["Música", "La música o los músicos son el tema central"],
-            ["Policial", "Investigaciones policiales, detectives"],
-            ["Psicológico", "Temas mentales, suspenso mental, giros profundos"],
-            ["Romance", "Relaciones amorosas como eje principal"],
-            ["Superhéroes", "Personajes con poderes, inspirados en cómics"],
-            ["Terror", "Buscar provocar miedo, tensión, horror"],
-            ["Thriller", "Suspenso intenso, ritmo veloz, tensión constante"]
-          ]; %>
-          <% categoriasDisponibles.forEach(([cat, guia]) => { %>
-            <option value="<%= cat %>" <%= movie.Categoria.includes(cat) ? "selected" : "" %>>
-              <%= cat %> (<%= guia %>)
-            </option>
-          <% }); %>
-        </select>
-      </label>
+              <label>Actores
+                <input type="text" name="Actores" value="<%- movie.Actores.join(', ') %>"
+                  placeholder="Ej: Elijah Wood, Ian McKellen, Viggo Mortensen" required autocomplete="off">
+              </label>
 
-      <label>Nombre de imagen (sin extensión)
-        <input type="text" name="Imagen" value="<%= movie.Imagen.replace('src/img/', '').replace('.jpg','') %>" placeholder="Ej: el_senor_anillos" required autocomplete="off">
-      </label>
+              <label>Año de estreno
+                <input type="number" name="Anio" value="<%= movie.Anio %>" placeholder="Ej: 2001" min="1888" max="2100"
+                  required autocomplete="off">
+              </label>
 
-      <button type="submit" class="btn">Actualizar Película</button>
-    </form>
+              <label for="Categoria">Categorías (usa Ctrl/Cmd para varias):
+                <select name="Categoria" id="Categoria" multiple size="8" required>
+                  <% const categoriasDisponibles=[ ["Acción", "Escenas dinámicas, peleas, persecuciones" ],
+                    ["Animación", "Película animada por completo o en gran parte" ],
+                    ["Aventura", "Viajes o desafíos épicos, exploración" ],
+                    ["Bélico", "Ambientada en tiempos de guerra real o ficticia" ],
+                    ["Biografía", "Basada en la vida de una persona real" ], ["Ciencia
+                    Ficción", "Tecnología, futuro, viajes espaciales, etc." ], ["Comedia", "Tono humorístico o satírico"
+                    ], ["Crimen", "Delitos, mafias, investigaciones criminales" ],
+                    ["Deportes", "El deporte es el eje central de la historia" ],
+                    ["Distopía", "Futuro opresivo, sociedades autoritarias o colapsadas" ],
+                    ["Drama", "Enfocada en emociones, conflictos humanos intensos" ],
+                    ["Educación", "Temas escolares, aprendizaje, docentes" ],
+                    ["Experimental", "Narrativa poco convencional, visualmente única" ],
+                    ["Familiar", "Apta para todo público, valores positivos" ],
+                    ["Fantasía", "Elementos mágicos, criaturas irreales, mundos imaginarios" ],
+                    ["Guerra", "Batallas, contexto militar intenso" ],
+                    ["Historia", "Basada en eventos históricos reales" ],
+                    ["Histórico", "Ambientación en épocas pasadas con enfoque en detalles de época" ],
+                    ["LGBTQ+", "Identidad y relaciones LGBTQ+ como eje central" ],
+                    ["Misterio", "Resolución de enigmas o hechos confusos" ],
+                    ["Musical", "Canciones originales interpretadas por los personajes" ],
+                    ["Música", "La música o los músicos son el tema central" ],
+                    ["Policial", "Investigaciones policiales, detectives" ],
+                    ["Psicológico", "Temas mentales, suspenso mental, giros profundos" ],
+                    ["Romance", "Relaciones amorosas como eje principal" ],
+                    ["Superhéroes", "Personajes con poderes, inspirados en cómics" ],
+                    ["Terror", "Buscar provocar miedo, tensión, horror" ],
+                    ["Thriller", "Suspenso intenso, ritmo veloz, tensión constante" ] ]; %>
+                    <% categoriasDisponibles.forEach(([cat, guia])=> { %>
+                      <option value="<%= cat %>" <%=movie.Categoria.includes(cat) ? "selected" : "" %>>
+                        <%= cat %> (<%= guia %>)
+                      </option>
+                      <% }); %>
+                </select>
+              </label>
 
-    <button type="button" class="back-link" id="back-button">Cancelar</button>
+              <label>Nombre de imagen (sin extensión)
+                <input type="text" name="Imagen" value="<%= movie.Imagen.replace('src/img/', '').replace('.jpg','') %>"
+                  placeholder="Ej: el_senor_anillos" required autocomplete="off">
+              </label>
+
+              <div class="image-preview-container">
+                <h3>Imagen Actual</h3>
+                <img src="<%= movie.Imagen %>" alt="Imagen de la película <%= movie.Titulo %>" class="movie-cover-preview">
+              </div>
+
+              <button type="submit" class="btn">Actualizar Película</button>
+            </form>
+
+            <button type="button" class="back-link" id="back-button">Cancelar</button>
   </section>
 
   <script src="/src/js/scripts.js"></script>
   <script src="https://kit.fontawesome.com/35a58614a1.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
+
 </html>

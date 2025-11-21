@@ -50,13 +50,15 @@
 
               <label for="Categoria">Categorías (usa Ctrl/Cmd para varias):
                 <select name="Categoria" id="Categoria" multiple size="8" required>
-                  <% const categoriasDisponibles=[ ["Acción", "Escenas dinámicas, peleas, persecuciones" ],
+                  <% const categoriasDisponibles= [
+                    ["Acción", "Escenas dinámicas, peleas, persecuciones" ],
                     ["Animación", "Película animada por completo o en gran parte" ],
                     ["Aventura", "Viajes o desafíos épicos, exploración" ],
                     ["Bélico", "Ambientada en tiempos de guerra real o ficticia" ],
-                    ["Biografía", "Basada en la vida de una persona real" ], ["Ciencia
-                    Ficción", "Tecnología, futuro, viajes espaciales, etc." ], ["Comedia", "Tono humorístico o satírico"
-                    ], ["Crimen", "Delitos, mafias, investigaciones criminales" ],
+                    ["Biografía", "Basada en la vida de una persona real" ], 
+                    ["Ciencia Ficción", "Tecnología, futuro, viajes espaciales, etc." ], 
+                    ["Comedia", "Tono humorístico o satírico"], 
+                    ["Crimen", "Delitos, mafias, investigaciones criminales" ],
                     ["Deportes", "El deporte es el eje central de la historia" ],
                     ["Distopía", "Futuro opresivo, sociedades autoritarias o colapsadas" ],
                     ["Drama", "Enfocada en emociones, conflictos humanos intensos" ],
@@ -76,7 +78,8 @@
                     ["Romance", "Relaciones amorosas como eje principal" ],
                     ["Superhéroes", "Personajes con poderes, inspirados en cómics" ],
                     ["Terror", "Buscar provocar miedo, tensión, horror" ],
-                    ["Thriller", "Suspenso intenso, ritmo veloz, tensión constante" ] ]; %>
+                    ["Thriller", "Suspenso intenso, ritmo veloz, tensión constante" ] 
+                    ]; %>
                     <% categoriasDisponibles.forEach(([cat, guia])=> { %>
                       <option value="<%= cat %>" <%=movie.Categoria.includes(cat) ? "selected" : "" %>>
                         <%= cat %> (<%= guia %>)
@@ -92,7 +95,7 @@
 
               <div class="image-preview-container">
                 <h3>Imagen Actual</h3>
-                <img src="<%= movie.Imagen %>" alt="Imagen de la película <%= movie.Titulo %>" class="movie-cover-preview">
+                <img src="/<%= movie.Imagen %>" alt="<%- movie.Titulo %>" class="movie-cover-preview">
               </div>
 
               <button type="submit" class="btn">Actualizar Película</button>
